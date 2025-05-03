@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from . import __version__ as app_version
+# Ensure __init__ is loaded correctly
+try:
+    from . import __version__ as app_version
+except ImportError:
+    app_version = "0.0.1" # Fallback
 
 app_name = "portugal_compliance"
-app_title = "Portugal Compliance"
+app_title = "Portugal Compliance" # Simple ASCII title
 app_publisher = "Manus AI Agent"
-app_description = "Frappe App for Portuguese Fiscal Compliance (SAF-T, ATCUD, QR Code, Digital Signature, Audit Trail)"
+app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)" # Simplified description
 app_email = "noreply@example.com"
 app_license = "mit"
 
