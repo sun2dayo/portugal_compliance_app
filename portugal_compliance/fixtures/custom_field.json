@@ -95,7 +95,7 @@
  },
 
  {
-  "dt": "Sales Invoice Return", # Credit Note
+  "dt": "Sales Invoice Return",
   "fieldname": "custom_atcud",
   "fieldtype": "Data",
   "label": "ATCUD",

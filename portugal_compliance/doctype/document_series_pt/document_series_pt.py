@@ -20,8 +20,8 @@ class DocumentSeriesPT(Document):
 	def communicate_series_to_at(self):
 		"""Communicates the document series details to the AT webservice."""
 		# Check permissions
-		 if not frappe.has_permission(self.doctype, "write"):
-			 frappe.throw(_("Not permitted to communicate series"), frappe.PermissionError)
+			 if not frappe.has_permission(self.doctype, "write"):
+				 frappe.throw(_("Not permitted to communicate series"), frappe.PermissionError)
 
 		 settings = frappe.get_single("Portugal Compliance Settings")
 		 at_username = settings.at_username
