@@ -2,9 +2,11 @@
 from __future__ import unicode_literals
 # Ensure __init__ is loaded correctly
 try:
-    from . import __version__ as app_version
+    # Try importing from the module directory
+    from portugal_compliance import __version__ as app_version
 except ImportError:
-    app_version = "0.0.1" # Fallback
+    # Fallback if structure is different or during initial setup
+    app_version = "0.0.1"
 
 app_name = "portugal_compliance"
 app_title = "Portugal Compliance" # Simple ASCII title
