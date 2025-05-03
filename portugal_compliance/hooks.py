@@ -7,7 +7,7 @@ except ImportError:
     app_version = "0.0.1" # Fallback
 
 app_name = "portugal_compliance"
-app_title = "Portugal Compliance" # Simple ASCII title
+app_title = ["Portugal Compliance"]
 app_publisher = "Manus AI Agent"
 app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)" # Simplified description
 app_email = "noreply@example.com"
