@@ -7,7 +7,8 @@
   "module": "Portugal Compliance",
   "options": "Taxonomy Code",
   "insert_after": "account_type",
-  "description": "Official taxonomy code for SAF-T PT reporting (Portaria 302/2016)."
+  "description": "Official taxonomy code for SAF-T PT reporting (Portaria 302/2016).",
+  "name": "Account-custom_taxonomy_code"
  },
  {
   "doctype": "Sales Invoice",
@@ -21,7 +22,8 @@
   "report_hide": 0,
   "allow_on_submit": 1,
   "insert_after": "naming_series",
-  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente)."
+  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente).",
+  "name": "Sales Invoice-custom_atcud"
  },
  {
   "doctype": "Delivery Note",
@@ -35,7 +37,8 @@
   "report_hide": 0,
   "allow_on_submit": 1,
   "insert_after": "naming_series",
-  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente)."
+  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente).",
+  "name": "Delivery Note-custom_atcud"
  },
  {
   "doctype": "Sales Invoice",
@@ -49,7 +52,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_atcud",
-  "description": "String content used to generate the QR Code."
+  "description": "String content used to generate the QR Code.",
+  "name": "Sales Invoice-custom_qr_code_content"
  },
  {
   "doctype": "Sales Invoice",
@@ -63,7 +67,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_qr_code_content",
-  "description": "Base64 encoded digital signature of the document."
+  "description": "Base64 encoded digital signature of the document.",
+  "name": "Sales Invoice-custom_digital_signature"
  },
  {
   "doctype": "Sales Invoice",
@@ -77,7 +82,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_digital_signature",
-  "description": "SHA256 hash of the document data used for chaining."
+  "description": "SHA256 hash of the document data used for chaining.",
+  "name": "Sales Invoice-custom_document_hash"
  },
  {
   "doctype": "Sales Invoice",
@@ -91,9 +97,9 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_document_hash",
-  "description": "Hash of the previous document in the series used for signing."
+  "description": "Hash of the previous document in the series used for signing.",
+  "name": "Sales Invoice-custom_previous_hash"
  },
-
  {
   "doctype": "Sales Invoice Return",
   "fieldname": "custom_atcud",
@@ -106,7 +112,8 @@
   "report_hide": 0,
   "allow_on_submit": 1,
   "insert_after": "naming_series",
-  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente)."
+  "description": "C\\u00f3digo \\u00danico de Documento (gerado automaticamente).",
+  "name": "Sales Invoice Return-custom_atcud"
  },
  {
   "doctype": "Sales Invoice Return",
@@ -120,7 +127,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_atcud",
-  "description": "String content used to generate the QR Code."
+  "description": "String content used to generate the QR Code.",
+  "name": "Sales Invoice Return-custom_qr_code_content"
  },
  {
   "doctype": "Sales Invoice Return",
@@ -134,7 +142,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_qr_code_content",
-  "description": "Base64 encoded digital signature of the document."
+  "description": "Base64 encoded digital signature of the document.",
+  "name": "Sales Invoice Return-custom_digital_signature"
  },
  {
   "doctype": "Sales Invoice Return",
@@ -148,7 +157,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_digital_signature",
-  "description": "SHA256 hash of the document data used for chaining."
+  "description": "SHA256 hash of the document data used for chaining.",
+  "name": "Sales Invoice Return-custom_document_hash"
  },
  {
   "doctype": "Sales Invoice Return",
@@ -162,7 +172,8 @@
   "report_hide": 1,
   "allow_on_submit": 1,
   "insert_after": "custom_document_hash",
-  "description": "Hash of the previous document in the series used for signing."
+  "description": "Hash of the previous document in the series used for signing.",
+  "name": "Sales Invoice Return-custom_previous_hash"
  },
  {
   "doctype": "Item",
@@ -173,7 +184,8 @@
   "default": "P",
   "module": "Portugal Compliance",
   "insert_after": "item_group",
-  "description": "Classifica\\u00e7\\u00e3o do produto/servi\\u00e7o para SAF-T PT (P=Produto, S=Servi\\u00e7o, M=Mercadoria, O=Outros)."
+  "description": "Classifica\\u00e7\\u00e3o do produto/servi\\u00e7o para SAF-T PT (P=Produto, S=Servi\\u00e7o, M=Mercadoria, O=Outros).",
+  "name": "Item-custom_saft_product_type"
  },
  {
   "doctype": "Sales Taxes and Charges Template",
@@ -183,17 +195,18 @@
   "options": "RED\\nINT\\nNOR\\nISE\\nOUT",
   "module": "Portugal Compliance",
   "insert_after": "account_head",
-  "description": "C\\u00f3digo da taxa de IVA para SAF-T PT (RED=Reduzida, INT=Interm\\u00e9dia, NOR=Normal, ISE=Isenta, OUT=Outra)."
+  "description": "C\\u00f3digo da taxa de IVA para SAF-T PT (RED=Reduzida, INT=Interm\\u00e9dia, NOR=Normal, ISE=Isenta, OUT=Outra).",
+  "name": "Sales Taxes and Charges Template-custom_saft_tax_code"
  },
  {
   "doctype": "Sales Taxes and Charges Template",
   "fieldname": "custom_saft_exemption_reason_code",
-  "fieldtype": "Data", 
+  "fieldtype": "Data",
   "label": "SAF-T Exemption Reason Code",
   "module": "Portugal Compliance",
   "insert_after": "custom_saft_tax_code",
   "depends_on": "eval:doc.custom_saft_tax_code=='ISE'",
-  "description": "C\\u00f3digo do motivo de isen\\u00e7\\u00e3o de IVA (e.g., M01, M05) - Preencher se Tax Code for ISE."
+  "description": "C\\u00f3digo do motivo de isen\\u00e7\\u00e3o de IVA (e.g., M01, M05) - Preencher se Tax Code for ISE.",
+  "name": "Sales Taxes and Charges Template-custom_saft_exemption_reason_code"
  }
 ]
-
