@@ -93,7 +93,7 @@
   "insert_after": "custom_document_hash",
   "description": "Hash of the previous document in the series used for signing."
  },
- # Add custom fields for other doctypes as needed (e.g., Delivery Note, Credit Note)
+
  {
   "dt": "Sales Invoice Return", # Credit Note
   "fieldname": "custom_atcud",
