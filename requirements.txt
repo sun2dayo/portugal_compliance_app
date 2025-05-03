@@ -1,0 +1,4 @@
+lxml
+cryptography
+qrcode[pil]
+requests
