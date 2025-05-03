@@ -7,7 +7,7 @@ except ImportError:
     app_version = "0.0.1"
 
 app_name = "portugal_compliance"
-app_title = "Portugal Compliance"
+app_title = "portugal_compliance"
 app_publisher = "Manus AI Agent"
 app_description = "Portuguese Fiscal Compliance App"
 app_email = "noreply@example.com"
