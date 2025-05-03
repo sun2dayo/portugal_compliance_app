@@ -15,7 +15,7 @@ doctype_list_js = {}
 doctype_tree_js = {}
 doctype_calendar_js = {}
 
-fixtures = ["Custom Field", "Print Format", "Compliance Audit Log"] # Add DocType to fixtures if needed for export
+fixtures = ["Print Format", "Compliance Audit Log"] # Add DocType to fixtures if needed for export
 
 # Define hooks to trigger compliance features
 doc_events = {
