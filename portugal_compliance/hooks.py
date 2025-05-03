@@ -56,7 +56,7 @@ doc_events = {
 
 # Jinja
 jinja = {
-\t"methods": [
+"methods": [
         "portugal_compliance.portugal_compliance.portugal_compliance.hooks.print_utils.get_qr_code_base64"
     ],
 # \t"filters": "portugal_compliance.utils.jinja_filters"
