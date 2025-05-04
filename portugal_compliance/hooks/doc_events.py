@@ -93,7 +93,8 @@ def handle_validate_submitted(doc, method):
                 if f"items[{i}].{field}" in changed_fields: break # Move to next check if change found
 
         if changed_fields:
-            details = f"Attempt to modify submitted document. Changed fields: {", ".join(changed_fields)}"
+            changed_fields_str = ", ".join(changed_fields)
+            details = f"Attempt to modify submitted document. Changed fields: {changed_fields_str}"
             create_compliance_log("Update Attempt (Submitted)", doc.doctype, doc.name, details=details)
             frappe.throw(_("Submitted documents compliant with Portuguese regulations cannot be modified. Please cancel and create a new one if changes are needed."))
 
