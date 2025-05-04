@@ -24,22 +24,22 @@ fixtures = ["Print Format", "Compliance Audit Log"] # Add DocType to fixtures if
 # Define hooks to trigger compliance features
 doc_events = {
     "Sales Invoice": {
-        "before_save": "portugal_compliance.hooks.doc_events.handle_before_save",
-        "on_submit": "portugal_compliance.hooks.doc_events.handle_on_submit",
-        "on_cancel": "portugal_compliance.hooks.doc_events.handle_on_cancel",
-        "validate": "portugal_compliance.hooks.doc_events.handle_validate_submitted"
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
     },
     "Delivery Note": {
-        "before_save": "portugal_compliance.hooks.doc_events.handle_before_save",
-        "on_submit": "portugal_compliance.hooks.doc_events.handle_on_submit",
-        "on_cancel": "portugal_compliance.hooks.doc_events.handle_on_cancel",
-        "validate": "portugal_compliance.hooks.doc_events.handle_validate_submitted"
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
     },
     "Sales Invoice Return": { # Assuming Credit Note uses this doctype
-        "before_save": "portugal_compliance.hooks.doc_events.handle_before_save",
-        "on_submit": "portugal_compliance.hooks.doc_events.handle_on_submit",
-        "on_cancel": "portugal_compliance.hooks.doc_events.handle_on_cancel",
-        "validate": "portugal_compliance.hooks.doc_events.handle_validate_submitted"
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
     },
     # Add other relevant document types here
     "Document Series PT": {
@@ -61,10 +61,11 @@ doc_events = {
 # Jinja
 jinja = {
     "methods": [
-        "portugal_compliance.hooks.print_utils.get_qr_code_base64"
+        "portugal_compliance.print_utils.get_qr_code_base64"
     ],
 #    "filters": "portugal_compliance.utils.jinja_filters"
 }
 
 # Installation / Uninstallation = { ... }
+
 

@@ -5,7 +5,7 @@ from frappe import _
 import json
 from .signing import sign_document
 # Removed direct import of generate_atcud_and_qr, will call helper
-from ..doctype.compliance_audit_log.compliance_audit_log import create_compliance_log
+from .doctype.compliance_audit_log.compliance_audit_log import create_compliance_log
 
 # Mapping from ERPNext DocType to AT Document Type Code (defined in Document Series PT)
 # This needs careful review and expansion based on specific ERPNext usage in Portugal
