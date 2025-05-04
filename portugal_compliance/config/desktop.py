@@ -7,6 +7,15 @@ def get_data():
 			"color": "grey",
 			"icon": "octicon octicon-law",
 			"type": "module",
-			"label": _("Portugal Compliance")
+			"label": _("Portugal Compliance"),
+			"items": [
+				{
+					"type": "doctype",
+					"name": "Portugal Compliance Settings",
+					"label": _("Settings"),
+					"description": _("Configure Portugal fiscal compliance settings.")
+				}
+			]
 		}
 	]
+
