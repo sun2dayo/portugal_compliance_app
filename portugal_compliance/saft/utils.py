@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import frappe
-from frappe.utils import formatdate, now_datetime, cstr
+from frappe import _
+import re
+
 
 def format_date(date_obj):
     """Formats date as YYYY-MM-DD."""
@@ -95,7 +97,9 @@ def get_address_detail(address_name=None, party_type=None, party_name=None, is_p
         return None, None, None, None, None
 
     # Combine address lines for AddressDetail, handling None values
-    addr_detail = f"{address_doc.address_line1 or ''} {address_doc.address_line2 or ''}".strip()
+    addr_line1 = address_doc.address_line1 or ''
+    addr_line2 = address_doc.address_line2 or ''
+    addr_detail = f"{addr_line1} {addr_line2}".strip()
     city = address_doc.city
     postal_code = address_doc.pincode
     region = address_doc.state # Assuming state holds the region
@@ -137,12 +141,6 @@ def format_currency(value, decimals=2):
     except (ValueError, TypeError):
         return f"0.{'0' * decimals}"
 
-
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-import frappe
-from frappe import _
-import re
 
 # ... (keep existing utility functions: format_date, format_datetime, etc.) ...
 
