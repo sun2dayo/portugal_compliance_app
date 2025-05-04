@@ -95,7 +95,7 @@ def get_address_detail(address_name=None, party_type=None, party_name=None, is_p
         return None, None, None, None, None
 
     # Combine address lines for AddressDetail, handling None values
-    addr_detail = f"{address_doc.address_line1 or \'\'} {address_doc.address_line2 or \'\'}".strip()
+    addr_detail = f"{address_doc.address_line1 or ''} {address_doc.address_line2 or ''}".strip()
     city = address_doc.city
     postal_code = address_doc.pincode
     region = address_doc.state # Assuming state holds the region
