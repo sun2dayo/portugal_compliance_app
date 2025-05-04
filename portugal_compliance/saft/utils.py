@@ -189,7 +189,9 @@ def get_sequential_number_from_name(doc_name, series_prefix):
         # Basic assumption: prefix ends with non-digit, followed by digits
         # Example: FT/2025/A/00001 -> prefix = FT/2025/A/
         # More robust: Use Naming Series format if available
-        match = re.match(f"^{re.escape(series_prefix)}(\d+)$".replace('\\.', '.'), doc_name) # Allow '.' in prefix
+        escaped_prefix = re.escape(series_prefix)
+        pattern_string = f"^{escaped_prefix}(\d+)$"
+        match = re.match(pattern_string, doc_name)
         if match:
             return int(match.group(1))
         else:
