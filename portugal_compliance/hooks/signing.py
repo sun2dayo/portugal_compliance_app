@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
-from .saft.utils import format_date, get_sequential_number_from_name # Removed format_currency
+from ..saft.utils import format_date, get_sequential_number_from_name # Removed format_currency
 
 # Placeholder for the initial hash value for the first document in a series
 # As per Despacho 8632/2014, point 4.1.1, this should be "0"
