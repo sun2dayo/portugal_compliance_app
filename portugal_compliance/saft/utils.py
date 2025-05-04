@@ -133,13 +133,16 @@ def get_party_account(party_name, party_type, company):
 def format_currency(value, decimals=2):
     """Formats a float/Decimal value to a string with fixed decimal places for SAF-T."""
     if value is None:
-        return f"0.{'0' * decimals}"
+        zero_str = '0' * decimals
+        return f"0.{zero_str}"
     try:
         # Ensure it's treated as a number, round appropriately
         num_value = float(value)
-        return f"{num_value:.{decimals}f}"
+        format_spec = f":.{decimals}f"
+        return f"{num_value:{format_spec}}"
     except (ValueError, TypeError):
-        return f"0.{'0' * decimals}"
+        zero_str = '0' * decimals
+        return f"0.{zero_str}"
 
 
 # ... (keep existing utility functions: format_date, format_datetime, etc.) ...
@@ -205,4 +208,5 @@ def get_sequential_number_from_name(doc_name, series_prefix):
         return None
 
 # ... (keep other existing utility functions) ...
+
 
