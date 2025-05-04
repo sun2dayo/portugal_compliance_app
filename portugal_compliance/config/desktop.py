@@ -3,16 +3,11 @@ from frappe import _
 def get_data():
 	return [
 		{
-			"label": _("Integrations"),
-			"items": [
-				{
-					"type": "doctype",
-					"name": "Portugal Compliance Settings",
-					"label": _("Portugal Compliance Settings"),
-					"description": _("Configure Portugal fiscal compliance settings (SAF-T, ATCUD, Signature)."),
-					"onboard": 1,
-				}
-			]
+			"module_name": "Portugal Compliance",
+			"color": "grey",
+			"icon": "octicon octicon-law",
+			"type": "module",
+			"label": _("Portugal Compliance")
 		}
 	]
 
