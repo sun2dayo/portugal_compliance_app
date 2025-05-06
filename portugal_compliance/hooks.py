@@ -12,6 +12,7 @@ app_publisher = "Manus AI Agent"
 app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)" # Simplified description
 app_email = "noreply@example.com"
 app_license = "mit"
+required_apps = ["erpnext"]
 
 # Hooks for ATCUD, QR Code generation, Signing, and Audit Logging
 doctype_js = {}
@@ -19,7 +20,7 @@ doctype_list_js = {}
 doctype_tree_js = {}
 doctype_calendar_js = {}
 
-fixtures = ["Print Format", "Compliance Audit Log"] # Add DocType to fixtures if needed for export
+fixtures = ["Print Format", "Compliance Audit Log", "Workspace"] # Add DocType to fixtures if needed for export
 
 # Define hooks to trigger compliance features
 doc_events = {
