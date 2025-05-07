@@ -22,8 +22,20 @@ fixtures = [
         "filters": [
             ["name", "in", ["Portugal Compliance"]]
         ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", [
+                "Sales Invoice-custom_atcud",
+                "Sales Invoice-custom_qr_code",
+                "Sales Invoice-custom_digital_signature",
+                "Sales Invoice-custom_previous_hash"
+            ]]
+        ]
     }
 ]
+
 
 # Doc Events for compliance hooks
 doc_events = {
