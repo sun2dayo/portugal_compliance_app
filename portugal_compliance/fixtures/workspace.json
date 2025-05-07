@@ -1,69 +1,10 @@
-[
-  {
-    "doctype": "Workspace",
-    "name": "Portugal Compliance",
-    "module": "Portugal Compliance",
-    "label": "Portugal Compliance",
-    "public": 1,
-    "is_standard": 1,
-    "title": "Portugal Compliance",
-    "content": [
-      {
-        "type": "header",
-        "data": {
-          "text": "Configurações",
-          "level": 4,
-          "col": 12
-        }
-      },
-      {
-        "type": "shortcut",
-        "data": {
-          "shortcut_name": "Portugal Compliance Settings",
-          "link_to": "Portugal Compliance Settings",
-          "type": "doctype",
-          "label": "Portugal Compliance Settings",
-          "col": 4
-        }
-      },
-      {
-        "type": "shortcut",
-        "data": {
-          "shortcut_name": "Document Series PT",
-          "link_to": "Document Series PT",
-          "type": "doctype",
-          "label": "Document Series PT",
-          "col": 4
-        }
-      },
-      {
-        "type": "header",
-        "data": {
-          "text": "Utilitários Fiscais",
-          "level": 4,
-          "col": 12
-        }
-      },
-      {
-        "type": "shortcut",
-        "data": {
-          "shortcut_name": "SAF-T Generator",
-          "link_to": "/app/single/SAF-T Generator",
-          "type": "page",
-          "label": "Gerador SAF-T",
-          "col": 4
-        }
-      },
-      {
-        "type": "shortcut",
-        "data": {
-          "shortcut_name": "ATCUD Logs",
-          "link_to": "Compliance Audit Log",
-          "type": "doctype",
-          "label": "Logs de ATCUD",
-          "col": 4
-        }
-      }
-    ]
-  }
-]
+{
+  "doctype": "Workspace",
+  "name": "Portugal Compliance",
+  "title": "Portugal Compliance",
+  "module": "Portugal Compliance",
+  "label": "Portugal Compliance",
+  "public": 1,
+  "is_standard": 1,
+  "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Configurações\", \"level\": 4, \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Portugal Compliance Settings\", \"link_to\": \"Portugal Compliance Settings\", \"type\": \"doctype\", \"label\": \"Portugal Compliance Settings\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Document Series PT\", \"link_to\": \"Document Series PT\", \"type\": \"doctype\", \"label\": \"Document Series PT\", \"col\": 4}}, {\"type\": \"header\", \"data\": {\"text\": \"Utilitários Fiscais\", \"level\": 4, \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"SAF-T Generator\", \"link_to\": \"/app/single/SAF-T Generator\", \"type\": \"page\", \"label\": \"Gerador SAF-T\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"ATCUD Logs\", \"link_to\": \"Compliance Audit Log\", \"type\": \"doctype\", \"label\": \"ATCUD Logs\", \"col\": 4}}]"
+}
