@@ -1,29 +1,12 @@
-{
-  "doctype": "Workspace",
-  "name": "Portugal Compliance",
-  "title": "Portugal Compliance",
-  "module": "Portugal Compliance",
-  "label": "Portugal Compliance",
-  "public": 1,
-  "is_standard": 1,
-  "content": [
-    {
-      "type": "header",
-      "data": {
-        "text": "Configurações",
-        "level": 4,
-        "col": 12
-      }
-    },
-    {
-      "type": "shortcut",
-      "data": {
-        "shortcut_name": "Portugal Compliance Settings",
-        "link_to": "Portugal Compliance Settings",
-        "type": "doctype",
-        "label": "Portugal Compliance Settings",
-        "col": 4
-      }
-    }
-  ]
-}
+[
+  {
+    "doctype": "Workspace",
+    "name": "Portugal Compliance",
+    "module": "Portugal Compliance",
+    "label": "Portugal Compliance",
+    "title": "Portugal Compliance",
+    "public": 1,
+    "is_standard": 1,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Configurações\", \"level\": 4, \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Portugal Compliance Settings\", \"link_to\": \"Portugal Compliance Settings\", \"type\": \"doctype\", \"label\": \"Portugal Compliance Settings\", \"col\": 4}}]"
+  }
+]
