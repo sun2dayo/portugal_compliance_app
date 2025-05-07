@@ -1,4 +1,4 @@
-lxml
-cryptography
-qrcode[pil]
-requests
+cryptography==42.0.5
+lxml==5.2.1
+qrcode[pil]==7.4.2
+requests==2.31.0
