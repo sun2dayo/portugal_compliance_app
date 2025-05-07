@@ -5,7 +5,19 @@
     "module": "Portugal Compliance",
     "label": "Portugal Compliance",
     "title": "Portugal Compliance",
-    "content": "[{\"type\": \"section\", \"label\": \"Settings\", \"items\": [{\"type\": \"doctype\", \"name\": \"Portugal Compliance Settings\", \"label\": \"Portugal Compliance Settings\"}]}]",
+    "content": [
+      {
+        "type": "section",
+        "label": "Settings",
+        "items": [
+          {
+            "type": "doctype",
+            "name": "Portugal Compliance Settings",
+            "label": "Portugal Compliance Settings"
+          }
+        ]
+      }
+    ],
     "is_standard": 1,
     "public": 1
   }
