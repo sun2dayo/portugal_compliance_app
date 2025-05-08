@@ -1,5 +1,7 @@
-{
+[
+  {
     "doctype": "Document Series PT",
+    "name": "FT2025-A",
     "series_code": "FT2025-A",
     "document_type": "FT - Fatura",
     "fiscal_year": "2025",
