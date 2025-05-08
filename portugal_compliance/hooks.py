@@ -47,6 +47,12 @@ fixtures = [
             "Compliance Audit Log",
             "Taxonomy Code"
         ]]]
+    },
+    {
+        "dt": "Portugal Compliance Settings"
+    },
+    {
+        "dt": "Document Series PT"
     }
 ]
 

@@ -1,82 +1,10 @@
 [
   {
-    "doctype": "DocType",
-    "name": "Document Series PT",
-    "module": "Portugal Compliance",
-    "custom": 1,
-    "fields": [
-      {
-        "fieldname": "series_code",
-        "label": "Series Code",
-        "fieldtype": "Data",
-        "reqd": 1
-      },
-      {
-        "fieldname": "tipo_serie",
-        "label": "Series Type",
-        "fieldtype": "Select",
-        "options": "N\nA",
-        "reqd": 1
-      },
-      {
-        "fieldname": "classe_doc",
-        "label": "Document Class",
-        "fieldtype": "Select",
-        "options": "FT\nFS\nFR\nNC\nND",
-        "reqd": 1
-      },
-      {
-        "fieldname": "tipo_doc",
-        "label": "Document Type",
-        "fieldtype": "Select",
-        "options": "FT\nFS\nFR\nNC\nND",
-        "reqd": 1
-      },
-      {
-        "fieldname": "data_inicio_utilizacao",
-        "label": "Start Date",
-        "fieldtype": "Date",
-        "reqd": 1
-      },
-      {
-        "fieldname": "primeiro_numero",
-        "label": "First Document Number",
-        "fieldtype": "Int",
-        "reqd": 1
-      },
-      {
-        "fieldname": "certificado_sw",
-        "label": "Software Certificate Number",
-        "fieldtype": "Int",
-        "reqd": 1
-      },
-      {
-        "fieldname": "atcud_codigo_validacao",
-        "label": "ATCUD Validation Code",
-        "fieldtype": "Data",
-        "read_only": 1
-      },
-      {
-        "fieldname": "estado_envio",
-        "label": "Send Status",
-        "fieldtype": "Select",
-        "options": "Em Aberto\nEnviado\nRejeitado",
-        "default": "Em Aberto"
-      }
-    ],
-    "permissions": [
-      {
-        "role": "System Manager",
-        "read": 1,
-        "write": 1,
-        "create": 1,
-        "delete": 1
-      }
-    ],
-    "is_submittable": 0,
-    "is_tree": 0,
-    "allow_import": 1,
-    "track_changes": 1,
-    "track_views": 1
+    "doctype": "Document Series PT",
+    "series_code": "FT2025-A",
+    "document_type": "FT - Fatura",
+    "fiscal_year": "2025",
+    "start_number": 1,
+    "communication_status": "Not Communicated"
   }
 ]

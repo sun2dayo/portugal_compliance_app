@@ -1,53 +1,15 @@
 [
   {
-    "doctype": "DocType",
+    "doctype": "Portugal Compliance Settings",
     "name": "Portugal Compliance Settings",
-    "module": "Portugal Compliance",
-    "custom": 1,
-    "istable": 0,
-    "is_single": 1,
-    "fields": [
-      {
-        "fieldname": "cert_path",
-        "label": "Certificado PFX (caminho)",
-        "fieldtype": "Data",
-        "reqd": 1
-      },
-      {
-        "fieldname": "cert_password",
-        "label": "Senha do Certificado",
-        "fieldtype": "Password",
-        "reqd": 1
-      },
-      {
-        "fieldname": "at_public_key_path",
-        "label": "Caminho da Chave Pública AT",
-        "fieldtype": "Data",
-        "reqd": 1
-      },
-      {
-        "fieldname": "endpoint_url",
-        "label": "URL do Webservice da AT",
-        "fieldtype": "Data",
-        "reqd": 1
-      },
-      {
-        "fieldname": "usar_wsdl_personalizado",
-        "label": "Usar WSDL Personalizado?",
-        "fieldtype": "Check"
-      },
-      {
-        "fieldname": "wsdl_path",
-        "label": "Caminho do WSDL Personalizado",
-        "fieldtype": "Data"
-      }
-    ],
-    "permissions": [
-      {
-        "role": "System Manager",
-        "read": 1,
-        "write": 1
-      }
-    ]
+    "software_provider_nif": "999999990",
+    "software_certification_number": "1234",
+    "at_username": "ws_user",
+    "cert_path": "/home/frappe/at_credentials/testeWebservices.pfx",
+    "cert_password": "TESTEwebservice",
+    "at_public_key_path": "/home/frappe/at_credentials/ChaveCifraPublicaAT2027.cer",
+    "endpoint_url": "https://servicos.portaldasfinancas.gov.pt:422/SeriesWSService",
+    "usar_wsdl_personalizado": 0,
+    "wsdl_path": ""
   }
 ]
