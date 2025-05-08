@@ -45,7 +45,7 @@ fixtures = [
         "filters": [["name", "in", [
             "Portugal Compliance Settings",
             "Compliance Audit Log",
-            "Taxonomy Code"
+            "Taxonomy Code",
             "Document Series PT"
         ]]]
     },
