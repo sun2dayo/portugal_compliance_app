@@ -122,7 +122,7 @@ def _ensure_atcud_and_qr_content(doc, method, force_qr_rebuild=False):
         # Handle case where sequential number might not be available yet
         if sequential_number is None:
              if not doc.is_new(): # If name exists but number extraction failed
-                  frappe.log_warning(f"Could not extract sequential number for ATCUD on {doc.name}", "ATCUD Generation")
+                  frappe.log_error(f"Could not extract sequential number for ATCUD on {doc.name}", "ATCUD Generation")
              # Cannot generate ATCUD yet if number is missing
              doc.custom_atcud = "ErrorGeneratingATCUD" # Mark as error
              # Do not proceed to QR code generation without ATCUD
