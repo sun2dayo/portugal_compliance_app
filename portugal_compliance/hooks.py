@@ -46,6 +46,7 @@ fixtures = [
             "Portugal Compliance Settings",
             "Compliance Audit Log",
             "Taxonomy Code"
+            "Document Series PT"
         ]]]
     },
     {
