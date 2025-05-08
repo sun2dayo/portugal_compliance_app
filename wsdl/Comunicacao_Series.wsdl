@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://at.gov.pt/" targetNamespace="http://at.gov.pt/" name="SeriesWSService">
+    <wsdl:types>
+        <xsd:schema xmlns:ns0="http://at.gov.pt/" targetNamespace="http://at.gov.pt/">
+            <xsd:element name="anularSerie" type="ns0:anularSerie"/>
+            <xsd:element name="anularSerieResponse" type="ns0:anularSerieResponse"/>
+            <xsd:element name="consultarSeries" type="ns0:consultarSeries"/>
+            <xsd:element name="consultarSeriesResponse" type="ns0:consultarSeriesResponse"/>
+            <xsd:element name="finalizarSerie" type="ns0:finalizarSerie"/>
+            <xsd:element name="finalizarSerieResponse" type="ns0:finalizarSerieResponse"/>
+            <xsd:element name="registarSerie" type="ns0:registarSerie"/>
+            <xsd:element name="registarSerieResponse" type="ns0:registarSerieResponse"/>
+            <xsd:simpleType name="serieType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="35"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="tipoSerieType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:length value="1"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="classeDocType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:length value="2"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="tipoDocType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:length value="2"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="numSeqType">
+                <xsd:restriction base="xsd:integer">
+                    <xsd:minInclusive value="1"/>
+                    <xsd:totalDigits value="25"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="numCertSwFaturType">
+                <xsd:restriction base="xsd:integer">
+                    <xsd:minInclusive value="0"/>
+                    <xsd:totalDigits value="4"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="codValidacaoSerieType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:length value="8"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="motivoType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:length value="2"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType name="justificacaoType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:maxLength value="4000"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:complexType name="registarSerie">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType"/>
+                    <xsd:element name="tipoSerie" type="tns:tipoSerieType"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType"/>
+                    <xsd:element name="numPrimDocSerie" type="tns:numSeqType"/>
+                    <xsd:element name="dataInicioPrevUtiliz" type="xsd:date"/>
+                    <xsd:element name="numCertSWFatur" type="tns:numCertSwFaturType"/>
+                    <xsd:element name="meioProcessamento" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="registarSerieResponse">
+                <xsd:sequence>
+                    <xsd:element name="InfoSerie" type="tns:infoSerie" minOccurs="0"/>
+                    <xsd:element name="listaErros" type="tns:listaErros" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="infoSerie">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType"/>
+                    <xsd:element name="tipoSerie" type="tns:tipoSerieType"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType"/>
+                    <xsd:element name="numPrimDocSerie" type="tns:numSeqType"/>
+                    <xsd:element name="dataInicioPrevUtiliz" type="xsd:date"/>
+                    <xsd:element name="numCertSWFatur" type="tns:numCertSwFaturType"/>
+                    <xsd:element name="meioProcessamento" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="codValidacaoSerie" type="tns:codValidacaoSerieType"/>
+                    <xsd:element name="dataRegisto" type="xsd:dateTime"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="listaErros">
+                <xsd:sequence>
+                    <xsd:element name="Erro" type="tns:Erro" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="Erro">
+                <xsd:sequence>
+                    <xsd:element name="codErro" type="xsd:string"/>
+                    <xsd:element name="msgErro" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="finalizarSerie">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType"/>
+                    <xsd:element name="codValidacaoSerie" type="tns:codValidacaoSerieType"/>
+                    <xsd:element name="dataFimUtiliz" type="xsd:date"/>
+                    <xsd:element name="numUltDocEmitido" type="tns:numSeqType"/>
+                    <xsd:element name="justificacao" type="tns:justificacaoType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="finalizarSerieResponse">
+                <xsd:sequence>
+                    <xsd:element name="InfoSerie" type="tns:infoSerieFim" minOccurs="0"/>
+                    <xsd:element name="listaErros" type="tns:listaErros" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="infoSerieFim">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType"/>
+                    <xsd:element name="codValidacaoSerie" type="tns:codValidacaoSerieType"/>
+                    <xsd:element name="estado" type="xsd:string"/>
+                    <xsd:element name="dataEstado" type="xsd:dateTime"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="consultarSeries">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType" minOccurs="0"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType" minOccurs="0"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType" minOccurs="0"/>
+                    <xsd:element name="codValidacaoSerie" type="tns:codValidacaoSerieType" minOccurs="0"/>
+                    <xsd:element name="dataRegistoDe" type="xsd:date" minOccurs="0"/>
+                    <xsd:element name="dataRegistoAte" type="xsd:date" minOccurs="0"/>
+                    <xsd:element name="numCertSWFatur" type="tns:numCertSwFaturType" minOccurs="0"/>
+                    <xsd:element name="meioProcessamento" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="consultarSeriesResponse">
+                <xsd:sequence>
+                    <xsd:element name="InfoSerie" type="tns:infoSerie" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="listaErros" type="tns:listaErros" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="anularSerie">
+                <xsd:sequence>
+                    <xsd:element name="serie" type="tns:serieType"/>
+                    <xsd:element name="classeDoc" type="tns:classeDocType"/>
+                    <xsd:element name="tipoDoc" type="tns:tipoDocType"/>
+                    <xsd:element name="codValidacaoSerie" type="tns:codValidacaoSerieType"/>
+                    <xsd:element name="motivo" type="tns:motivoType"/>
+                    <xsd:element name="declaracaoNaoEmissao" type="xsd:boolean"/>
+                    <xsd:element name="justificacao" type="tns:justificacaoType" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="anularSerieResponse">
+                <xsd:sequence>
+                    <xsd:element name="InfoSerie" type="tns:infoSerieFim" minOccurs="0"/>
+                    <xsd:element name="listaErros" type="tns:listaErros" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="registarSerie">
+        <wsdl:part name="parameters" element="tns:registarSerie"/>
+    </wsdl:message>
+    <wsdl:message name="registarSerieResponse">
+        <wsdl:part name="parameters" element="tns:registarSerieResponse"/>
+    </wsdl:message>
+    <wsdl:message name="finalizarSerie">
+        <wsdl:part name="parameters" element="tns:finalizarSerie"/>
+    </wsdl:message>
+    <wsdl:message name="finalizarSerieResponse">
+        <wsdl:part name="parameters" element="tns:finalizarSerieResponse"/>
+    </wsdl:message>
+    <wsdl:message name="consultarSeries">
+        <wsdl:part name="parameters" element="tns:consultarSeries"/>
+    </wsdl:message>
+    <wsdl:message name="consultarSeriesResponse">
+        <wsdl:part name="parameters" element="tns:consultarSeriesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="anularSerie">
+        <wsdl:part name="parameters" element="tns:anularSerie"/>
+    </wsdl:message>
+    <wsdl:message name="anularSerieResponse">
+        <wsdl:part name="parameters" element="tns:anularSerieResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="SeriesWSPortType">
+        <wsdl:operation name="registarSerie">
+            <wsdl:input wsam:Action="registarSerie" message="tns:registarSerie"/>
+            <wsdl:output wsam:Action="http://at.gov.pt/SeriesWSService/registarSerieResponse" message="tns:registarSerieResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="finalizarSerie">
+            <wsdl:input wsam:Action="finalizarSerie" message="tns:finalizarSerie"/>
+            <wsdl:output wsam:Action="http://at.gov.pt/SeriesWSService/finalizarSerieResponse" message="tns:finalizarSerieResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="consultarSeries">
+            <wsdl:input wsam:Action="consultarSeries" message="tns:consultarSeries"/>
+            <wsdl:output wsam:Action="http://at.gov.pt/SeriesWSService/consultarSeriesResponse" message="tns:consultarSeriesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="anularSerie">
+            <wsdl:input wsam:Action="anularSerie" message="tns:anularSerie"/>
+            <wsdl:output wsam:Action="http://at.gov.pt/SeriesWSService/anularSerieResponse" message="tns:anularSerieResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SeriesWSPortBinding" type="tns:SeriesWSPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="registarSerie">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="finalizarSerie">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="consultarSeries">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="anularSerie">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SeriesWSService">
+        <wsdl:port name="SeriesWSPort" binding="tns:SeriesWSPortBinding">
+            <soap:address location="https://servicos.portaldasfinancas.gov.pt:422/SeriesWSService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+

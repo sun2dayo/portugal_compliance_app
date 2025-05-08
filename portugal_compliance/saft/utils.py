@@ -183,29 +183,34 @@ def get_atcud(doc_series_code, doc_type_at_code, doc_posting_date, doc_sequentia
     return atcud
 
 def get_sequential_number_from_name(doc_name, series_prefix):
-    """Extracts the sequential number from a document name based on its series prefix."""
+    """
+    Extracts the sequential number from a document name using its naming series prefix.
+    Ensures the result is a string to preserve leading zeros (needed for ATCUD).
+    """
     if not doc_name or not series_prefix:
         return None
+
     try:
-        # Basic assumption: prefix ends with non-digit, followed by digits
-        # Example: FT/2025/A/00001 -> prefix = FT/2025/A/
-        # More robust: Use Naming Series format if available
+        # Escape series prefix for regex pattern
         escaped_prefix = re.escape(series_prefix)
-        pattern_string = f"^{escaped_prefix}(\d+)$"
+        pattern_string = f"^{escaped_prefix}(\\d+)$"
         match = re.match(pattern_string, doc_name)
+
         if match:
-            return int(match.group(1))
-        else:
-            # Fallback: try splitting by '/' and taking the last part if it's numeric
-            parts = doc_name.split('/')
-            if parts and parts[-1].isdigit():
-                return int(parts[-1])
-            else:
-                frappe.log_error("Could not extract sequential number", f"Name: {doc_name}, Prefix: {series_prefix}")
-                return None
+            return match.group(1)  # return as string (with leading zeros)
+
+        # Fallback: try to extract numeric tail after last dash or slash
+        number_match = re.search(r"(\d+)$", doc_name)
+        if number_match:
+            return number_match.group(1)
+
+        frappe.log_error("Could not extract sequential number", f"Name: {doc_name}, Prefix: {series_prefix}")
+        return None
+
     except Exception as e:
         frappe.log_error(f"Error extracting sequential number: {e}", f"Name: {doc_name}, Prefix: {series_prefix}")
         return None
+
 
 def validate_taxonomy_codes(accounts=None):
     """
