@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "portugal_compliance_app"
+name = "portugal_compliance"
 version = "0.0.1" # Will be synced with __init__.py and setup.py
 description = "Compliance with Portuguese fiscal regulations (ATCUD, SAFT-PT, Digital Signatures) for ERPNext."
 readme = "README.md" # Assuming a README.md will be created
@@ -21,8 +21,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/user/portugal_compliance_app" # Placeholder
-"Bug Tracker" = "https://github.com/user/portugal_compliance_app/issues" # Placeholder
+"Homepage" = "https://github.com/user/portugal_compliance" # Placeholder
+"Bug Tracker" = "https://github.com/user/portugal_compliance/issues" # Placeholder
 
 # Frappe-specific metadata (optional, can also be in hooks.py or setup.py)
 # [tool.frappe]
