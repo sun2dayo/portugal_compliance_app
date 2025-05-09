@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portugal_compliance_app"
+version = "0.0.1" # Will be synced with __init__.py and setup.py
+description = "Compliance with Portuguese fiscal regulations (ATCUD, SAFT-PT, Digital Signatures) for ERPNext."
+readme = "README.md" # Assuming a README.md will be created
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Manus AI (on behalf of user)", email = "user@example.com"}, # Placeholder
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Frappe",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/user/portugal_compliance_app" # Placeholder
+"Bug Tracker" = "https://github.com/user/portugal_compliance_app/issues" # Placeholder
+
+# Frappe-specific metadata (optional, can also be in hooks.py or setup.py)
+# [tool.frappe]
+# app_title = "Portugal Compliance"
+# app_publisher = "Your Company Name"
+# app_description = "Compliance with Portuguese fiscal regulations (ATCUD, SAFT-PT, Digital Signatures)."
+# app_icon = "octicon octicon-law"
+# app_color = "blue"
+# app_email = "your.email@example.com"
+# app_license = "MIT"
+

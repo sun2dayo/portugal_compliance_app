@@ -1,16 +1,19 @@
 include MANIFEST.in
 include requirements.txt
-recursive-include portugal_compliance *.json
-recursive-include portugal_compliance *.md
-recursive-include portugal_compliance *.py
-recursive-include portugal_compliance *.js
-recursive-include portugal_compliance *.css
-recursive-include portugal_compliance *.html
-recursive-include portugal_compliance *.csv
-recursive-include portugal_compliance *.ico
-recursive-include portugal_compliance *.png
-recursive-include portugal_compliance *.jpg
-recursive-include portugal_compliance *.jpeg
-recursive-include portugal_compliance *.gif
-recursive-include portugal_compliance *.svg
-recursive-include portugal_compliance *.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include portugal_compliance_app *.css
+recursive-include portugal_compliance_app *.csv
+recursive-include portugal_compliance_app *.html
+recursive-include portugal_compliance_app *.ico
+recursive-include portugal_compliance_app *.js
+recursive-include portugal_compliance_app *.json
+recursive-include portugal_compliance_app *.md
+recursive-include portugal_compliance_app *.png
+recursive-include portugal_compliance_app *.py
+recursive-include portugal_compliance_app *.svg
+recursive-include portugal_compliance_app *.txt
+recursive-exclude portugal_compliance_app *.pyc
+

@@ -1,0 +1,161 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "creation": "2024-05-09 18:00:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "section_break_company_info",
+        "company_nif",
+        "software_producer_nif",
+        "section_break_at_credentials",
+        "at_username",
+        "at_password",
+        "at_webservice_url_series",
+        "at_webservice_url_saft",
+        "section_break_certificates",
+        "certificate_pfx_path",
+        "certificate_password",
+        "client_chain_pem_path",
+        "client_key_pem_path",
+        "section_break_saft_defaults",
+        "saft_product_company_tax_id",
+        "saft_software_validation_number",
+        "saft_product_version"
+    ],
+    "fields": [
+        {
+            "fieldname": "section_break_company_info",
+            "fieldtype": "Section Break",
+            "label": "Company and Software Producer Information"
+        },
+        {
+            "fieldname": "company_nif",
+            "fieldtype": "Data",
+            "label": "Company NIF (Fiscal ID)",
+            "reqd": 1,
+            "description": "NIF of the company using the software."
+        },
+        {
+            "fieldname": "software_producer_nif",
+            "fieldtype": "Data",
+            "label": "Software Producer NIF",
+            "reqd": 1,
+            "description": "NIF of the certified software producer."
+        },
+        {
+            "fieldname": "section_break_at_credentials",
+            "fieldtype": "Section Break",
+            "label": "AT Webservice Credentials"
+        },
+        {
+            "fieldname": "at_username",
+            "fieldtype": "Data",
+            "label": "AT Webservice Username (Sub-user)",
+            "description": "Username for AT webservices (sub-user for series registration, etc.)"
+        },
+        {
+            "fieldname": "at_password",
+            "fieldtype": "Password",
+            "label": "AT Webservice Password (Sub-user)",
+            "description": "Password for the AT webservice sub-user. Stored encrypted."
+        },
+        {
+            "fieldname": "at_webservice_url_series",
+            "fieldtype": "Data",
+            "label": "AT Series Webservice URL",
+            "default": "https://servicos.portaldasfinancas.gov.pt:701/SeriesWSService",
+            "description": "URL for AT document series registration webservice."
+        },
+        {
+            "fieldname": "at_webservice_url_saft",
+            "fieldtype": "Data",
+            "label": "AT SAF-T Webservice URL (Future Use)",
+            "description": "URL for AT SAF-T submission webservice (if applicable in future)."
+        },
+        {
+            "fieldname": "section_break_certificates",
+            "fieldtype": "Section Break",
+            "label": "Digital Certificates"
+        },
+        {
+            "fieldname": "certificate_pfx_path",
+            "fieldtype": "Data",
+            "label": "PFX Certificate File Path (.pfx)",
+            "description": "Absolute path to the .pfx certificate file for AT communication and signing."
+        },
+        {
+            "fieldname": "certificate_password",
+            "fieldtype": "Password",
+            "label": "PFX Certificate Password",
+            "description": "Password for the .pfx certificate file. Stored encrypted."
+        },
+        {
+            "fieldname": "client_chain_pem_path",
+            "fieldtype": "Data",
+            "label": "Client Certificate Chain PEM Path (.pem)",
+            "description": "Absolute path to the client certificate chain PEM file (used if PFX is not directly used by library)."
+        },
+        {
+            "fieldname": "client_key_pem_path",
+            "fieldtype": "Data",
+            "label": "Client Private Key PEM Path (.pem)",
+            "description": "Absolute path to the client private key PEM file (used if PFX is not directly used by library)."
+        },
+        {
+            "fieldname": "section_break_saft_defaults",
+            "fieldtype": "Section Break",
+            "label": "SAF-T Defaults"
+        },
+        {
+            "fieldname": "saft_product_company_tax_id",
+            "fieldtype": "Data",
+            "label": "SAF-T ProductCompanyTaxID",
+            "description": "Usually the same as Company NIF, for SAF-T Header."
+        },
+        {
+            "fieldname": "saft_software_validation_number",
+            "fieldtype": "Data",
+            "label": "SAF-T SoftwareValidationNumber",
+            "reqd": 1,
+            "description": "The certification number of the software provided by AT."
+        },
+        {
+            "fieldname": "saft_product_version",
+            "fieldtype": "Data",
+            "label": "SAF-T ProductVersion",
+            "reqd": 1,
+            "description": "Version of this compliance software (e.g., 1.0)."
+        }
+    ],
+    "icon": "fa fa-cog",
+    "is_singleton": 1,
+    "links": [],
+    "modified": "2024-05-09 18:00:00.000000",
+    "modified_by": "Administrator",
+    "module": "Portugal Compliance",
+    "name": "Portugal Compliance Settings",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "import": 0,
+            "export": 1,
+            "share": 1
+        }
+    ],
+    "quick_entry": 0,
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+}

@@ -1,0 +1,112 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "creation": "2024-05-09 18:10:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "series_id",
+        "document_type",
+        "prefix",
+        "current_number",
+        "atcud_code",
+        "at_communication_status",
+        "last_at_response",
+        "is_active"
+    ],
+    "fields": [
+        {
+            "fieldname": "series_id",
+            "fieldtype": "Data",
+            "label": "Series ID",
+            "unique": 1,
+            "reqd": 1,
+            "in_list_view": 1,
+            "description": "Unique identifier for the document series (e.g., 'FT A/2024')."
+        },
+        {
+            "fieldname": "document_type",
+            "fieldtype": "Select",
+            "label": "Document Type",
+            "options": "\nSales Invoice\nCredit Note\nSimplified Invoice\nReceipt\nTransport Document",
+            "reqd": 1,
+            "in_list_view": 1,
+            "description": "Type of document this series applies to."
+        },
+        {
+            "fieldname": "prefix",
+            "fieldtype": "Data",
+            "label": "Prefix",
+            "description": "Prefix for the document numbers in this series (e.g., 'FT A')."
+        },
+        {
+            "fieldname": "current_number",
+            "fieldtype": "Int",
+            "label": "Current Number",
+            "default": "0",
+            "read_only": 1,
+            "description": "Last used number in this series."
+        },
+        {
+            "fieldname": "atcud_code",
+            "fieldtype": "Data",
+            "label": "ATCUD Code",
+            "read_only": 1,
+            "in_list_view": 1,
+            "description": "Document series validation code provided by AT."
+        },
+        {
+            "fieldname": "at_communication_status",
+            "fieldtype": "Select",
+            "label": "AT Communication Status",
+            "options": "\nNot Communicated\nPending Communication\nCommunicated Successfully\nCommunication Failed",
+            "default": "Not Communicated",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "last_at_response",
+            "fieldtype": "Small Text",
+            "label": "Last AT Response",
+            "read_only": 1
+        },
+        {
+            "fieldname": "is_active",
+            "fieldtype": "Check",
+            "label": "Is Active",
+            "default": "1",
+            "description": "Indicates if this series is currently active for new documents."
+        }
+    ],
+    "icon": "fa fa-list-ol",
+    "links": [],
+    "modified": "2024-05-09 18:10:00.000000",
+    "modified_by": "Administrator",
+    "module": "Portugal Compliance",
+    "name": "Document Series PT",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "submit": 0,
+            "cancel": 0,
+            "amend": 0
+        },
+        {
+            "role": "Accounts Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 0
+        }
+    ],
+    "quick_entry": 0,
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1,
+    "autoname": "field:series_id"
+}

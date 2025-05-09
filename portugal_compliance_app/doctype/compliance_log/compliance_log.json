@@ -1,0 +1,133 @@
+{
+    "actions": [],
+    "allow_rename": 0,
+    "creation": "2024-05-09 18:30:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "log_type",
+        "event_type",
+        "timestamp",
+        "user",
+        "reference_doctype",
+        "reference_document",
+        "status",
+        "summary",
+        "details",
+        "request_data",
+        "response_data"
+    ],
+    "fields": [
+        {
+            "fieldname": "log_type",
+            "fieldtype": "Select",
+            "label": "Log Type",
+            "options": "\nSystem\nAT Communication\nSigning\nSAF-T Generation\nValidation",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "event_type",
+            "fieldtype": "Data",
+            "label": "Event Type/Action",
+            "description": "Specific event or action being logged (e.g., 'Submit Invoice', 'Register Series', 'Generate SAF-T').",
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "timestamp",
+            "fieldtype": "Datetime",
+            "label": "Timestamp",
+            "reqd": 1,
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "user",
+            "fieldtype": "Link",
+            "label": "User",
+            "options": "User",
+            "read_only": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "reference_doctype",
+            "fieldtype": "Link",
+            "label": "Reference DocType",
+            "options": "DocType",
+            "description": "DocType related to this log entry (e.g., Sales Invoice, Document Series PT)."
+        },
+        {
+            "fieldname": "reference_document",
+            "fieldtype": "Dynamic Link",
+            "label": "Reference Document",
+            "options": "reference_doctype",
+            "description": "Specific document related to this log entry."
+        },
+        {
+            "fieldname": "status",
+            "fieldtype": "Select",
+            "label": "Status",
+            "options": "\nInfo\nSuccess\nWarning\nError\nCritical",
+            "reqd": 1,
+            "in_list_view": 1
+        },
+        {
+            "fieldname": "summary",
+            "fieldtype": "Data",
+            "label": "Summary",
+            "reqd": 1,
+            "description": "Brief summary of the log event."
+        },
+        {
+            "fieldname": "details",
+            "fieldtype": "Text",
+            "label": "Details",
+            "description": "Detailed information or message related to the log event."
+        },
+        {
+            "fieldname": "request_data",
+            "fieldtype": "Code",
+            "label": "Request Data (JSON/XML)",
+            "options": "JSON",
+            "description": "Data sent in a request, if applicable (e.g., to AT webservice)."
+        },
+        {
+            "fieldname": "response_data",
+            "fieldtype": "Code",
+            "label": "Response Data (JSON/XML)",
+            "options": "JSON",
+            "description": "Data received in a response, if applicable (e.g., from AT webservice)."
+        }
+    ],
+    "icon": "fa fa-history",
+    "issingle": 0,
+    "links": [],
+    "modified": "2024-05-09 18:30:00.000000",
+    "modified_by": "Administrator",
+    "module": "Portugal Compliance",
+    "name": "Compliance Log",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 0,
+            "create": 0,
+            "delete": 0,
+            "export": 1,
+            "report": 1
+        },
+        {
+            "role": "Accounts Manager",
+            "read": 1,
+            "export": 1,
+            "report": 1
+        }
+    ],
+    "quick_entry": 0,
+    "sort_field": "timestamp",
+    "sort_order": "DESC",
+    "track_changes": 0,
+    "track_seen": 0,
+    "read_only_onload": 1
+}
