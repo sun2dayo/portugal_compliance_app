@@ -105,63 +105,43 @@ import os
 from io import BytesIO
 from frappe.utils.file_manager import save_file
 from portugal_compliance.saft.utils import get_atcud, get_sequential_number_from_name, format_currency, format_date
-from portugal_compliance.saft.atcud_service import register_serie_at
 
 def _ensure_atcud_and_qr_content(doc, method, force_qr_rebuild=False):
     """Generates ATCUD and QR Code content if applicable and not already present or forced."""
-
-    # Only run for relevant doctypes and when draft or QR rebuild is forced
+    # Only run for relevant doctypes and if status allows (draft or forced rebuild on submit)
     if doc.doctype not in DOCTYPE_TO_AT_CODE or (doc.docstatus != 0 and not force_qr_rebuild):
         return
 
-    # Extract series code from naming_series
-    if not doc.naming_series:
+    doc_type_at_code = DOCTYPE_TO_AT_CODE.get(doc.doctype)
+    if not doc_type_at_code or not doc.naming_series:
         return
-    series_code = doc.naming_series.rstrip("-.")  # Adjust to remove delimiters
 
-    # Validate if the series is registered
-    serie_doc = frappe.get_doc("Document Series PT", {"series_code": series_code})
-    if not serie_doc:
-        frappe.throw(f"The selected series '{series_code}' is not registered in Document Series PT.")
-
-    # Ensure the series has been validated with AT
-    if not serie_doc.atcud_codigo_validacao:
-        result = register_serie_at(
-            serie=serie_doc.series_code,
-            tipo_serie=serie_doc.tipo_serie,
-            classe_doc=serie_doc.classe_doc,
-            tipo_doc=serie_doc.tipo_doc,
-            num_prim_doc_serie=serie_doc.primeiro_numero,
-            data_inicio_prev_utiliz=serie_doc.data_inicio_utilizacao,
-            num_cert_sw_fatur=serie_doc.certificado_sw
-        )
-        if result["status"] == "success":
-            serie_doc.db_set("atcud_codigo_validacao", result["atcud"])
-            frappe.db.commit()
-        else:
-            frappe.throw("Error communicating series with AT: " + str(result.get("message")))
-
-    # Generate ATCUD if not already set or failed previously
+    # Generate ATCUD if not present
     if not doc.custom_atcud or doc.custom_atcud == "ErrorGeneratingATCUD":
         sequential_number = get_sequential_number_from_name(doc.name, doc.naming_series)
-
+        # Handle case where sequential number might not be available yet
         if sequential_number is None:
-            if not doc.is_new():
-                frappe.log_error(f"Could not extract sequential number for ATCUD on {doc.name}", "ATCUD Generation")
-            doc.custom_atcud = "ErrorGeneratingATCUD"
-            return
+             if not doc.is_new(): # If name exists but number extraction failed
+                  frappe.log_warning(f"Could not extract sequential number for ATCUD on {doc.name}", "ATCUD Generation")
+             # Cannot generate ATCUD yet if number is missing
+             doc.custom_atcud = "ErrorGeneratingATCUD" # Mark as error
+             # Do not proceed to QR code generation without ATCUD
+             return 
+        else:    
+            atcud = get_atcud(doc.naming_series, doc_type_at_code, doc.posting_date, sequential_number)
+            if atcud:
+                doc.custom_atcud = atcud
+            else:
+                doc.custom_atcud = "ErrorGeneratingATCUD"
 
-        doc.custom_atcud = f"{serie_doc.atcud_codigo_validacao}-{sequential_number}"
-
-    # Generate QR code content if needed
+    # Generate/Rebuild QR Code Content if ATCUD is valid or rebuild is forced
     if (doc.custom_atcud and doc.custom_atcud != "ErrorGeneratingATCUD") and (not doc.custom_qr_code_content or force_qr_rebuild):
         try:
             qr_content = _build_qr_code_string(doc)
             doc.custom_qr_code_content = qr_content
         except Exception as e:
-            frappe.log_error(f"Error building QR code string for {doc.name}: {e}", "QR Code Generation")
-            doc.custom_qr_code_content = "ErrorBuildingQRContent"
-
+             frappe.log_error(f"Error building QR code string for {doc.name}: {e}", "QR Code Generation")
+             doc.custom_qr_code_content = "ErrorBuildingQRContent"
 
 def _build_qr_code_string(doc):
     """Constructs the string content for the QR code based on AT specifications."""
