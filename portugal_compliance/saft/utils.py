@@ -183,29 +183,134 @@ def get_atcud(doc_series_code, doc_type_at_code, doc_posting_date, doc_sequentia
     return atcud
 
 def get_sequential_number_from_name(doc_name, series_prefix):
-    """Extracts the sequential number from a document name based on its series prefix."""
+    """
+    Extracts the sequential number from a document name using its naming series prefix.
+    Ensures the result is a string to preserve leading zeros (needed for ATCUD).
+    """
     if not doc_name or not series_prefix:
         return None
+
     try:
-        # Basic assumption: prefix ends with non-digit, followed by digits
-        # Example: FT/2025/A/00001 -> prefix = FT/2025/A/
-        # More robust: Use Naming Series format if available
+        # Escape series prefix for regex pattern
         escaped_prefix = re.escape(series_prefix)
-        pattern_string = f"^{escaped_prefix}(\d+)$"
+        pattern_string = f"^{escaped_prefix}(\\d+)$"
         match = re.match(pattern_string, doc_name)
+
         if match:
-            return int(match.group(1))
-        else:
-            # Fallback: try splitting by '/' and taking the last part if it's numeric
-            parts = doc_name.split('/')
-            if parts and parts[-1].isdigit():
-                return int(parts[-1])
-            else:
-                frappe.log_error("Could not extract sequential number", f"Name: {doc_name}, Prefix: {series_prefix}")
-                return None
+            return match.group(1)  # return as string (with leading zeros)
+
+        # Fallback: try to extract numeric tail after last dash or slash
+        number_match = re.search(r"(\d+)$", doc_name)
+        if number_match:
+            return number_match.group(1)
+
+        frappe.log_error("Could not extract sequential number", f"Name: {doc_name}, Prefix: {series_prefix}")
+        return None
+
     except Exception as e:
         frappe.log_error(f"Error extracting sequential number: {e}", f"Name: {doc_name}, Prefix: {series_prefix}")
         return None
+
+
+def validate_taxonomy_codes(accounts=None):
+    """
+    Checks if all accounts have a custom taxonomy code mapped.
+    Returns a list of accounts missing the mapping.
+    """
+    if not accounts:
+        accounts = frappe.get_all("Account", filters={"disabled": 0}, fields=["name", "custom_taxonomy_code"])
+
+    missing = [acc.name for acc in accounts if not acc.custom_taxonomy_code]
+    if missing:
+        frappe.log_error("\n".join(missing), "Accounts missing taxonomy codes")
+    return missing
+
+
+def validate_customer_tax_id():
+    """
+    Validates that all active customers have a proper NIF (tax_id).
+    Returns list of invalid customer names.
+    """
+    customers = frappe.get_all("Customer", filters={"disabled": 0}, fields=["name", "tax_id"])
+    invalids = []
+
+    for cust in customers:
+        tax_id = cust.tax_id or ""
+        # Accept 9 digits or default consumer code
+        if not tax_id.isdigit() or len(tax_id) != 9:
+            invalids.append(cust.name)
+        elif tax_id == "000000000":
+            invalids.append(cust.name)
+
+    if invalids:
+        frappe.log_error("\n".join(invalids), "Customers with invalid NIF")
+    return invalids
+
+
+def get_invoice_reference_data(credit_note_doc):
+    """
+    Extracts reference data for a credit note: links it to the original invoice.
+    Assumes credit note includes a link via 'return_against' or similar custom field.
+    """
+    if not credit_note_doc or not credit_note_doc.get("return_against"):
+        return None
+
+    ref_invoice = frappe.get_doc("Sales Invoice", credit_note_doc.return_against)
+    return {
+        "InvoiceNo": ref_invoice.name,
+        "InvoiceDate": ref_invoice.posting_date,
+        "ATCUD": ref_invoice.get("custom_atcud"),
+        "Hash": ref_invoice.get("custom_digital_signature")
+    }
+
+def run_saft_precheck(company):
+    """
+    Runs a full precheck of SAF-T requirements for a given company.
+    Includes validations for:
+      - Taxonomy codes on accounts
+      - Valid NIFs on customers
+      - Series settings (ATCUD) (optional: add later)
+    Returns a dictionary with results and any problems found.
+    """
+    from frappe.utils import get_url
+
+    summary = {
+        "company": company,
+        "taxonomy_issues": [],
+        "customer_nif_issues": [],
+        "status": "OK"
+    }
+
+    # Validate account taxonomy codes
+    accounts = frappe.get_all("Account", filters={"company": company}, fields=["name", "custom_taxonomy_code"])
+    missing_taxonomies = validate_taxonomy_codes(accounts)
+    if missing_taxonomies:
+        summary["taxonomy_issues"] = missing_taxonomies
+        summary["status"] = "WARNING"
+
+    # Validate customer NIFs
+    bad_nifs = validate_customer_tax_id()
+    if bad_nifs:
+        summary["customer_nif_issues"] = bad_nifs
+        summary["status"] = "WARNING"
+
+    # Optional: Check if ATCUD series are communicated
+    # (future enhancement — link to Document Series PT table)
+
+    if summary["status"] == "WARNING":
+        frappe.msgprint({
+            "title": _("SAF-T Precheck Warnings"),
+            "message": _("Some issues were found. Please review before generating SAF-T."),
+            "indicator": "orange"
+        })
+    else:
+        frappe.msgprint({
+            "title": _("SAF-T Precheck Complete"),
+            "message": _("All checks passed successfully."),
+            "indicator": "green"
+        })
+
+    return summary
 
 # ... (keep other existing utility functions) ...
 

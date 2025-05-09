@@ -1,0 +1,16 @@
+[
+  {
+    "doctype": "Document Series PT",
+    "name": "FT2025-A",
+    "series_code": "FT2025-A",
+    "document_type": "FT - Fatura",
+    "fiscal_year": "2025",
+    "start_number": 1,
+    "tipo_serie": "N",
+    "classe_doc": "FT",
+    "tipo_doc": "FT",
+    "data_inicio_utilizacao": "2025-01-01",
+    "primeiro_numero": 1,
+    "certificado_sw": 1234,
+    "communication_status": "Not Communicated"
+}

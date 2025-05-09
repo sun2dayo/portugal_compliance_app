@@ -1,28 +1,63 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-# Ensure __init__ is loaded correctly
+
 try:
     from . import __version__ as app_version
 except ImportError:
-    app_version = "0.0.1" # Fallback
+    app_version = "1.0.1"
 
 app_name = "portugal_compliance"
-app_title = "Portugal Compliance" # Simple ASCII title
-app_publisher = "Manus AI Agent"
-app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)" # Simplified description
-app_email = "noreply@example.com"
-app_license = "mit"
+app_title = "Portugal Compliance"
+app_publisher = "NovaDX - Octávio Daio"
+app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)"
+app_email = "app@novadx.eu"
+app_license = "GPL-3.0"
 required_apps = ["erpnext"]
 
-# Hooks for ATCUD, QR Code generation, Signing, and Audit Logging
-doctype_js = {}
-doctype_list_js = {}
-doctype_tree_js = {}
-doctype_calendar_js = {}
+# Fixtures (workspace and formats)
+fixtures = [
+    "Print Format",
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "in", ["Portugal Compliance"]]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", [
+                "Sales Invoice-custom_atcud",
+                "Sales Invoice-custom_qr_code",
+                "Sales Invoice-custom_digital_signature",
+                "Sales Invoice-custom_previous_hash"
+            ]]
+        ]
+    },
+    {
+        "dt": "Client Script",
+        "filters": [
+            ["dt", "=", "Document Series PT"]
+        ]
+    },
+    {
+        "dt": "DocType",
+        "filters": [["name", "in", [
+            "Portugal Compliance Settings",
+            "Compliance Audit Log",
+            "Taxonomy Code"
+            "Document Series PT"
+        ]]]
+    },
+    {
+        "dt": "Portugal Compliance Settings"
+    },
+    {
+        "dt": "Document Series PT"
+    }
+]
 
-fixtures = ["Print Format", "Compliance Audit Log", "Workspace"] # Add DocType to fixtures if needed for export
-
-# Define hooks to trigger compliance features
+# Doc Events for compliance hooks
 doc_events = {
     "Sales Invoice": {
         "before_save": "portugal_compliance.doc_events.handle_before_save",
@@ -36,37 +71,17 @@ doc_events = {
         "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
         "validate": "portugal_compliance.doc_events.handle_validate_submitted"
     },
-    "Sales Invoice Return": { # Assuming Credit Note uses this doctype
+    "Sales Invoice Return": {
         "before_save": "portugal_compliance.doc_events.handle_before_save",
         "on_submit": "portugal_compliance.doc_events.handle_on_submit",
         "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
         "validate": "portugal_compliance.doc_events.handle_validate_submitted"
-    },
-    # Add other relevant document types here
-    "Document Series PT": {
-        # Log successful communication (triggered from within the doctype method)
     }
 }
 
-# Hook for SAF-T Generation (triggered from the page/report script)
-# We'll add logging within the generator script itself.
-
-# scheduler_events = { ... }
-
-# Includes in <head> = { ... }
-
-# Home Pages = { ... }
-
-# Generators = { ... }
-
-# Jinja
+# Jinja Methods
 jinja = {
     "methods": [
         "portugal_compliance.print_utils.get_qr_code_base64"
-    ],
-#    "filters": "portugal_compliance.utils.jinja_filters"
+    ]
 }
-
-# Installation / Uninstallation = { ... }
-
-
