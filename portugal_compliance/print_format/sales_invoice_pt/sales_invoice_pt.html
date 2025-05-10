@@ -1,0 +1,73 @@
+{% extends "templates/print_formats/standard.html" %}
+
+{% block content %}
+<div class="print-format">
+    <h1>{{ _(doc.doctype) }} {{ doc.name }}</h1>
+    <hr>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <p><strong>{{ _("Customer") }}:</strong> {{ doc.customer_name }}</p>
+            <p><strong>{{ _("Date") }}:</strong> {{ doc.get_formatted("posting_date") }}</p>
+            <p><strong>{{ _("Due Date") }}:</strong> {{ doc.get_formatted("due_date") }}</p>
+            <p><strong>{{ _("ATCUD") }}:</strong> {{ doc.custom_atcud or "N/A" }}</p>
+        </div>
+        <div>
+            <p><strong>{{ _("Company") }}:</strong> {{ doc.company }}</p>
+            <!-- Add more company details if needed -->
+        </div>
+    </div>
+
+    <hr>
+    <h3>{{ _("Items") }}</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>{{ _("Sr") }}</th>
+                <th>{{ _("Item") }}</th>
+                <th>{{ _("Description") }}</th>
+                <th>{{ _("Qty") }}</th>
+                <th>{{ _("Rate") }}</th>
+                <th>{{ _("Amount") }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in doc.items %}
+            <tr>
+                <td>{{ item.idx }}</td>
+                <td>{{ item.item_code }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.qty }} {{ item.uom }}</td>
+                <td>{{ item.get_formatted("rate") }}</td>
+                <td>{{ item.get_formatted("amount") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <h4>{{ _("Totals") }}</h4>
+            <p><strong>{{ _("Net Total") }}:</strong> {{ doc.get_formatted("net_total") }}</p>
+            <p><strong>{{ _("Total Taxes") }}:</strong> {{ doc.get_formatted("total_taxes_and_charges") }}</p>
+            <p><strong>{{ _("Grand Total") }}:</strong> {{ doc.get_formatted("grand_total") }}</p>
+            <p><strong>{{ _("In Words") }}:</strong> {{ doc.in_words }}</p>
+        </div>
+        <div style="text-align: right;">
+            <h4>{{ _("QR Code") }}</h4>
+            {% set qr_code_base64 = get_qr_code_base64(doc.doctype, doc.name) %}
+            {% if qr_code_base64 %}
+                <img src="{{ qr_code_base64 }}" alt="QR Code" style="width: 100px; height: 100px;">
+            {% else %}
+                <p>{{ _("QR Code not available") }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr>
+    <p><i>{{ _("Processed according to Portuguese regulations.") }}</i></p>
+    <!-- Add Signature/Hash details here later -->
+
+</div>
+{% endblock %}
+

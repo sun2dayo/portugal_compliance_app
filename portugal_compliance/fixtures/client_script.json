@@ -1,0 +1,10 @@
+[
+  {
+    "doctype": "Client Script",
+    "dt": "Document Series PT",
+    "script_type": "Client",
+    "enabled": 1,
+    "script": "frappe.ui.form.on('Document Series PT', {\n    refresh(frm) {\n        if (!frm.doc.__islocal && !frm.doc.atcud_codigo_validacao) {\n            frm.add_custom_button(\"Comunicar com AT\", () => {\n                frappe.call({\n                    method: 'portugal_compliance.portugal_compliance.saft.atcud_service.register_serie_at',\n                    args: {\n                        serie: frm.doc.series_code,\n                        tipo_serie: frm.doc.tipo_serie,\n                        classe_doc: frm.doc.classe_doc,\n                        tipo_doc: frm.doc.tipo_doc,\n                        num_prim_doc_serie: frm.doc.primeiro_numero,\n                        data_inicio_prev_utiliz: frm.doc.data_inicio_utilizacao,\n                        num_cert_sw_fatur: frm.doc.certificado_sw\n                    },\n                    callback: function(r) {\n                        if (r.message && r.message.status === \"success\") {\n                            frappe.msgprint(\"✅ Série comunicada com sucesso à AT!\");\n                            frm.reload_doc();\n                        } else {\n                            frappe.throw(\"❌ Erro ao comunicar com AT: \" + (r.message.message || \"Resposta desconhecida\"));\n                        }\n                    }\n                });\n            });\n        }\n    }\n});",
+    "name": "Document Series PT Client Script"
+  }
+]

@@ -1,107 +1,105 @@
-# hooks.py for Portugal Compliance App
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+try:
+    from . import __version__ as app_version
+except ImportError:
+    app_version = "1.0.1"
 
 app_name = "portugal_compliance"
 app_title = "Portugal Compliance"
-app_publisher = "Your Company Name"
-app_description = "Compliance with Portuguese fiscal regulations (ATCUD, SAFT-PT, Digital Signatures)."
-app_email = "your.email@example.com"
-app_license = "MIT"
-app_logo_url = "/assets/portugal_compliance/images/logo.png"  # Placeholder
+app_publisher = "NovaDX - Octávio Daio"
+app_description = "Portuguese Fiscal Compliance App (SAF-T, ATCUD, QR Code, Signature)"
+app_email = "app@novadx.eu"
+app_license = "GPL-3.0"
+required_apps = ["erpnext"]
 
-# Frappe/ERPNext version compatibility (adjust as needed)
-# frappe_compatibility = "^15.0.0"
-# erpnext_compatibility = "^15.0.0"
-
-required_apps = ["erpnext"] # Assuming ERPNext is a dependency
-
-# Document Events
-# Example: Trigger actions on Sales Invoice submission or cancellation
-doc_events = {
-    # "Sales Invoice": {
-    #     "on_submit": "portugal_compliance.portugal_compliance.modules.signing.sign_document_on_submit",
-    #     "before_save": "portugal_compliance.portugal_compliance.modules.at_communication.validate_atcud_on_save",
-    #     "on_cancel": "portugal_compliance.portugal_compliance.modules.at_communication.handle_cancelled_document_series",
-    # },
-    # "Company": {
-    #     "on_update": "portugal_compliance.portugal_compliance.doctype.portugal_compliance_settings.update_settings_on_company_change"
-    # }
-}
-
-# Fixtures: Data to be loaded on app installation/update
-# List of fixtures to be exported/imported.
-# Fixtures are JSON files that represent data records.
 fixtures = [
-    "custom_field",         # Loads from portugal_compliance/fixtures/custom_field.json
-    "property_setter",      # Loads from portugal_compliance/fixtures/property_setter.json
-    # The following are examples of other ways to define fixtures or specific DocTypes to export
-    # {"dt": "Custom Field", "filters": [["module", "=", "Portugal Compliance"]]}, # Example for custom fields with filters
-    # {"dt": "Property Setter", "filters": [["module", "=", "Portugal Compliance"]]}, # Example for property setters with filters
-    # "Portugal Chart of Accounts", # Example for a custom fixture for a DocType (e.g. if you have a DocType named this)
-    # "Taxonomy Code",              # Example for a custom fixture for a DocType
-    # "Document Series PT"          # Example for a custom fixture for a DocType
+    "Print Format",
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "in", ["Portugal Compliance"]]
+        ]
+    },
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", [
+                "Sales Invoice-custom_atcud",
+                "Sales Invoice-custom_qr_code",
+                "Sales Invoice-custom_digital_signature",
+                "Sales Invoice-custom_previous_hash"
+            ]]
+        ]
+    },
+    {
+        "dt": "Client Script",
+        "filters": [
+            ["dt", "=", "Document Series PT"]
+        ]
+    },
+    {
+        "dt": "DocType",
+        "filters": [["name", "in", [
+            "Portugal Compliance Settings",
+            "Compliance Audit Log",
+            "Taxonomy Code",
+            "Document Series PT"
+        ]]]
+    },
+    {
+        "dt": "Portugal Compliance Settings"
+    },
+    {
+        "dt": "Document Series PT"
+    }
 ]
 
-# Client-side scripts
-# doctype_js = {
-#     "Sales Invoice": "public/js/sales_invoice_pt.js",
-#     "Purchase Invoice": "public/js/purchase_invoice_pt.js"
-# }
-# doctype_list_js = {
-#     "Sales Invoice": "public/js/sales_invoice_list_pt.js"
-# }
 
-# Scheduled Tasks
-# scheduler_events = {
-#     "cron": {
-#         "*/15 * * * *": [
-#             "portugal_compliance.portugal_compliance.tasks.sync_document_series_with_at"
-#         ]
-#     },
-#     "daily": [
-#         "portugal_compliance.portugal_compliance.tasks.daily_compliance_check"
-#     ]
-# }
+# Doc Events for compliance hooks
+doc_events = {
+    "Sales Invoice": {
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
+    },
+    "Delivery Note": {
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
+    },
+    "Sales Invoice Return": {
+        "before_save": "portugal_compliance.doc_events.handle_before_save",
+        "on_submit": "portugal_compliance.doc_events.handle_on_submit",
+        "on_cancel": "portugal_compliance.doc_events.handle_on_cancel",
+        "validate": "portugal_compliance.doc_events.handle_validate_submitted"
+    }
+}
 
-# Override Doctype Class
-# override_doctype_class = {
-#     "Sales Invoice": "portugal_compliance.overrides.extended_sales_invoice.ExtendedSalesInvoice"
-# }
 
-# Desk Notifications
-# on_session_creation = "portugal_compliance.utils.setup_compliance_notifications"
 
-# App includes (for JS and CSS)
-app_include_js = "/assets/portugal_compliance/js/portugal_compliance.js"
-app_include_css = "/assets/portugal_compliance/css/portugal_compliance.css"
+# Hook for SAF-T Generation (triggered from the page/report script)
+# We'll add logging within the generator script itself.
 
-# Workspace / Desktop Page
-# workspace_name = "Portugal Compliance"
-# workspace_link = "portugal_compliance.portugal_compliance.config.desktop.get_data"
+# scheduler_events = { ... }
 
-# User Permissions
-# on_session_creation = [
-#     "portugal_compliance.permissions.setup_user_permissions"
-# ]
+# Includes in <head> = { ... }
 
-# Patches
-# patch_handlers = {
-#     "portugal_compliance.patches.v1_0.fix_data_migration": "execute_patch"
-# }
+# Home Pages = { ... }
 
-# Standard Hooks for custom reports, pages, etc.
-# report_override_path = "portugal_compliance.reports"
-# page_override_path = "portugal_compliance.pages"
+# Generators = { ... }
 
-# If you have commands that should be available in `bench`
-# commands = [
-#     "portugal_compliance.commands.setup_at_credentials"
-# ]
+# Jinja
+jinja = {
+    "methods": [
+        "portugal_compliance.print_utils.get_qr_code_base64"
+    ],
+#    "filters": "portugal_compliance.utils.jinja_filters"
+}
 
-# Translation
-# get_translated_dict = {
-#     "pt": "portugal_compliance.translations.pt"
-# }
+# Installation / Uninstallation = { ... }
 
-# Add to apps screen
-add_to_apps_screen = 1
 

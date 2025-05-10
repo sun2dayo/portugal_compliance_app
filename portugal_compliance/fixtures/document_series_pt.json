@@ -1,6 +1,5 @@
 [
   {
-    "name": "Sales Invoice-custom_atcud",
     "doctype": "Custom Field",
     "dt": "Sales Invoice",
     "fieldname": "custom_atcud",
@@ -11,7 +10,6 @@
     "permlevel": 0
   },
   {
-    "name": "Sales Invoice-custom_qr_code",
     "doctype": "Custom Field",
     "dt": "Sales Invoice",
     "fieldname": "custom_qr_code",
@@ -22,7 +20,6 @@
     "permlevel": 0
   },
   {
-    "name": "Sales Invoice-custom_digital_signature",
     "doctype": "Custom Field",
     "dt": "Sales Invoice",
     "fieldname": "custom_digital_signature",
@@ -33,7 +30,6 @@
     "permlevel": 0
   },
   {
-    "name": "Sales Invoice-custom_previous_hash",
     "doctype": "Custom Field",
     "dt": "Sales Invoice",
     "fieldname": "custom_previous_hash",
