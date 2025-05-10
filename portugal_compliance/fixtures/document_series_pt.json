@@ -1,42 +1,14 @@
-[
-  {
-    "doctype": "Custom Field",
-    "dt": "Sales Invoice",
-    "fieldname": "custom_atcud",
-    "label": "ATCUD",
-    "fieldtype": "Data",
-    "insert_after": "naming_series",
-    "read_only": 1,
-    "permlevel": 0
-  },
-  {
-    "doctype": "Custom Field",
-    "dt": "Sales Invoice",
-    "fieldname": "custom_qr_code",
-    "label": "QR Code Content",
-    "fieldtype": "Text",
-    "insert_after": "custom_atcud",
-    "read_only": 1,
-    "permlevel": 0
-  },
-  {
-    "doctype": "Custom Field",
-    "dt": "Sales Invoice",
-    "fieldname": "custom_digital_signature",
-    "label": "Digital Signature",
-    "fieldtype": "Data",
-    "insert_after": "custom_qr_code",
-    "read_only": 1,
-    "permlevel": 0
-  },
-  {
-    "doctype": "Custom Field",
-    "dt": "Sales Invoice",
-    "fieldname": "custom_previous_hash",
-    "label": "Previous Hash",
-    "fieldtype": "Data",
-    "insert_after": "custom_digital_signature",
-    "read_only": 1,
-    "permlevel": 0
-  }
-]
+{
+    "doctype": "Document Series PT",
+    "series_code": "FT2025-A",
+    "document_type": "FT - Fatura",
+    "fiscal_year": "2025",
+    "start_number": 1,
+    "tipo_serie": "N",
+    "classe_doc": "FT",
+    "tipo_doc": "FT",
+    "data_inicio_utilizacao": "2025-01-01",
+    "primeiro_numero": 1,
+    "certificado_sw": 1234,
+    "communication_status": "Not Communicated"
+}
