@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2025-05-03 08:43:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "timestamp",
+  "user",
+  "event_type",
+  "column_break_4",
+  "reference_doctype",
+  "reference_name",
+  "section_break_7",
+  "details",
+  "log_hash"
+ ],
+ "fields": [
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "label": "Timestamp",
+   "read_only": 1,
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "read_only": 1,
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_type",
+   "fieldtype": "Select",
+   "label": "Event Type",
+   "options": "\nCreate\nSubmit\nCancel\nUpdate Attempt (Submitted)\nSAF-T Generated\nSeries Communicated",
+   "read_only": 1,
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Reference DocType",
+   "options": "DocType",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Name",
+   "options": "reference_doctype",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "label": "Details",
+   "read_only": 1,
+   "description": "Additional details about the event, e.g., fields changed in an update attempt."
+  },
+  {
+   "fieldname": "log_hash",
+   "fieldtype": "Data",
+   "label": "Log Entry Hash",
+   "read_only": 1,
+   "description": "Hash of this log entry to ensure integrity (optional, can be added later)."
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 0,
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2025-05-03 08:43:00.000000",
+ "modified_by": "Administrator",
+ "module": "Portugal Compliance",
+ "name": "Compliance Audit Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0, 
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 0, 
+   "submit": 0,
+   "cancel": 0
+  }
+ ],
+ "sort_field": "timestamp",
+ "sort_order": "DESC",
+ "track_changes": 0, 
+ "track_seen": 0,
+ "track_views": 0
+}

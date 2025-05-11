@@ -1,0 +1,115 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-05-11 14:40:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "dados_serie_section",
+        "tipo_documento",
+        "prefixo_serie",
+        "ano_fiscal",
+        "numero_sequencial_atual",
+        "ativo",
+        "column_break_1",
+        "codigo_validacao_serie_at",
+        "empresa"
+    ],
+    "fields": [
+        {
+            "fieldname": "dados_serie_section",
+            "fieldtype": "Section Break",
+            "label": "Dados da Série"
+        },
+        {
+            "fieldname": "tipo_documento",
+            "fieldtype": "Select",
+            "label": "Tipo de Documento",
+            "options": "\nFatura\nNota de Crédito\nNota de Débito\nGuia de Remessa\nFatura Simplificada\nFatura-Recibo",
+            "reqd": 1
+        },
+        {
+            "fieldname": "prefixo_serie",
+            "fieldtype": "Data",
+            "label": "Prefixo da Série",
+            "description": "Ex: FT, NC, GR. Pode incluir o ano, como FT2023.",
+            "reqd": 1
+        },
+        {
+            "fieldname": "ano_fiscal",
+            "fieldtype": "Int",
+            "label": "Ano Fiscal",
+            "reqd": 1
+        },
+        {
+            "default": "0",
+            "fieldname": "numero_sequencial_atual",
+            "fieldtype": "Int",
+            "label": "Número Sequencial Atual",
+            "read_only": 1,
+            "description": "Último número utilizado nesta série."
+        },
+        {
+            "default": "1",
+            "fieldname": "ativo",
+            "fieldtype": "Check",
+            "label": "Ativo"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "codigo_validacao_serie_at",
+            "fieldtype": "Data",
+            "label": "Código de Validação da Série (AT)",
+            "description": "Código fornecido pela AT após comunicação da série."
+        },
+        {
+            "fieldname": "empresa",
+            "fieldtype": "Link",
+            "label": "Empresa",
+            "options": "Company",
+            "reqd": 1,
+            "default": "frappe.defaults.get_user_default(\"Company\")"
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2025-05-11 14:40:00.000000",
+    "modified_by": "Administrator",
+    "module": "Portugal Compliance",
+    "name": "Serie de Documento Fiscal",
+    "naming_rule": "By fieldname",
+    "autoname": "field:prefixo_serie",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 1,
+            "delete": 0,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "Accounts Manager",
+            "share": 1,
+            "write": 1
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+}

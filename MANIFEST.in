@@ -1,0 +1,12 @@
+include MANIFEST.in
+include requirements.txt
+include setup.py
+recursive-include portugal_compliance *.py *.json *.js *.html *.css *.md *.txt *.csv *.svg *.png *.gif *.jpg *.jpeg *.woff *.woff2 *.ttf *.eot *.otf
+recursive-include portugal_compliance/public/images *
+recursive-include portugal_compliance/templates *
+recursive-include portugal_compliance/www *
+recursive-include portugal_compliance/fixtures *
+recursive-include portugal_compliance/translations *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+

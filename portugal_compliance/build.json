@@ -1,0 +1,9 @@
+{
+    "portugal_compliance.bundle.js": [
+        "portugal_compliance/page/saft_pt_generator/saft_pt_generator.js",
+        "portugal_compliance/doctype/taxonomy_code/taxonomy_code.js",
+        "portugal_compliance/doctype/portugal_compliance_settings/portugal_compliance_settings.js",
+        "portugal_compliance/doctype/document_series_pt/document_series_pt.js"
+    ]
+}
+

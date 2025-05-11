@@ -1,0 +1,116 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-05-11 14:42:00.000000",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "dados_certificado_section",
+        "nome_certificado",
+        "emitido_por",
+        "valido_de",
+        "valido_ate",
+        "ativo",
+        "column_break_1",
+        "empresa",
+        "ficheiro_certificado_privado",
+        "password_certificado"
+    ],
+    "fields": [
+        {
+            "fieldname": "dados_certificado_section",
+            "fieldtype": "Section Break",
+            "label": "Dados do Certificado Digital"
+        },
+        {
+            "fieldname": "nome_certificado",
+            "fieldtype": "Data",
+            "label": "Nome do Certificado",
+            "reqd": 1,
+            "unique": 1,
+            "description": "Nome identificador para o certificado (ex: Certificado Principal AT 2025)"
+        },
+        {
+            "fieldname": "emitido_por",
+            "fieldtype": "Data",
+            "label": "Emitido Por (Autoridade Certificadora)"
+        },
+        {
+            "fieldname": "valido_de",
+            "fieldtype": "Date",
+            "label": "Válido De"
+        },
+        {
+            "fieldname": "valido_ate",
+            "fieldtype": "Date",
+            "label": "Válido Até"
+        },
+        {
+            "default": "1",
+            "fieldname": "ativo",
+            "fieldtype": "Check",
+            "label": "Ativo"
+        },
+        {
+            "fieldname": "column_break_1",
+            "fieldtype": "Column Break"
+        },
+        {
+            "fieldname": "empresa",
+            "fieldtype": "Link",
+            "label": "Empresa Associada",
+            "options": "Company",
+            "reqd": 1,
+            "description": "Empresa à qual este certificado pertence."
+        },
+        {
+            "fieldname": "ficheiro_certificado_privado",
+            "fieldtype": "Attach",
+            "label": "Ficheiro do Certificado (Chave Privada - .pfx, .p12)",
+            "description": "Carregue o ficheiro do certificado digital que contém a chave privada."
+        },
+        {
+            "fieldname": "password_certificado",
+            "fieldtype": "Password",
+            "label": "Password do Certificado",
+            "description": "Password para aceder à chave privada no ficheiro do certificado."
+        }
+    ],
+    "index_web_pages_for_search": 1,
+    "links": [],
+    "modified": "2025-05-11 14:42:00.000000",
+    "modified_by": "Administrator",
+    "module": "Portugal Compliance",
+    "name": "Certificado Digital Qualificado",
+    "naming_rule": "By fieldname",
+    "autoname": "field:nome_certificado",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "write": 1
+        },
+        {
+            "create": 0,
+            "delete": 0,
+            "email": 0,
+            "export": 0,
+            "print": 0,
+            "read": 1,
+            "role": "Accounts Manager",
+            "share": 0,
+            "write": 0
+        }
+    ],
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "track_changes": 1
+}

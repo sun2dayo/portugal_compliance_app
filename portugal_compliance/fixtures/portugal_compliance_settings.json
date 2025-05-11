@@ -1,0 +1,86 @@
+{
+  "doctype": "DocType",
+  "name": "Portugal Compliance Settings",
+  "module": "Portugal Compliance",
+  "custom": 1,
+  "is_single": 1,
+  "track_changes": 1,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "software_provider_nif",
+      "fieldtype": "Data",
+      "label": "Software Provider NIF",
+      "description": "NIF (Tax ID) of the company that developed this compliance app."
+    },
+    {
+      "fieldname": "software_certificate_number",
+      "fieldtype": "Data",
+      "label": "Software Certificate Number",
+      "description": "Certificate number assigned by AT to this software version (e.g., 1234/AT)."
+    },
+    {
+      "fieldname": "at_username",
+      "fieldtype": "Data",
+      "label": "AT Portal Username",
+      "description": "Username for accessing AT webservices (e.g., for ATCUD series validation)."
+    },
+    {
+      "fieldname": "at_password",
+      "fieldtype": "Password",
+      "label": "AT Portal Password"
+    },
+    {
+      "fieldname": "private_key_path",
+      "fieldtype": "Data",
+      "label": "Private Key File Path",
+      "description": "Absolute path to the private key file (PEM format) on the server used for signing documents."
+    },
+    {
+      "fieldname": "private_key_password",
+      "fieldtype": "Password",
+      "label": "Private Key Password (if any)"
+    },
+    {
+      "fieldname": "cert_path",
+      "fieldtype": "Data",
+      "label": "Certificado Digital (.pfx)",
+      "description": "Caminho absoluto do ficheiro .pfx no servidor."
+    },
+    {
+      "fieldname": "cert_password",
+      "fieldtype": "Password",
+      "label": "Senha do Certificado Digital"
+    },
+    {
+      "fieldname": "at_public_key_path",
+      "fieldtype": "Data",
+      "label": "Chave Pública da AT (.cer)",
+      "description": "Caminho para a chave pública fornecida pela AT."
+    },
+    {
+      "fieldname": "endpoint_url",
+      "fieldtype": "Data",
+      "label": "ATCUD Endpoint URL",
+      "default": "https://servicos.portaldasfinancas.gov.pt:422/SeriesWSService"
+    },
+    {
+      "fieldname": "usar_wsdl_personalizado",
+      "fieldtype": "Check",
+      "label": "Usar caminho WSDL personalizado"
+    },
+    {
+      "fieldname": "wsdl_path",
+      "fieldtype": "Data",
+      "label": "Caminho WSDL personalizado",
+      "depends_on": "eval:doc.usar_wsdl_personalizado"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1
+    }
+  ]
+}

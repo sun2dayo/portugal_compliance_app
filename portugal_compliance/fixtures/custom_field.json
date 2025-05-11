@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Sales Invoice-custom_atcud",
+    "doctype": "Custom Field",
+    "dt": "Sales Invoice",
+    "fieldname": "custom_atcud",
+    "label": "ATCUD",
+    "fieldtype": "Data",
+    "insert_after": "naming_series",
+    "read_only": 1,
+    "permlevel": 0
+  },
+  {
+    "name": "Sales Invoice-custom_qr_code",
+    "doctype": "Custom Field",
+    "dt": "Sales Invoice",
+    "fieldname": "custom_qr_code",
+    "label": "QR Code Content",
+    "fieldtype": "Text",
+    "insert_after": "custom_atcud",
+    "read_only": 1,
+    "permlevel": 0
+  },
+  {
+    "name": "Sales Invoice-custom_digital_signature",
+    "doctype": "Custom Field",
+    "dt": "Sales Invoice",
+    "fieldname": "custom_digital_signature",
+    "label": "Digital Signature",
+    "fieldtype": "Data",
+    "insert_after": "custom_qr_code",
+    "read_only": 1,
+    "permlevel": 0
+  },
+  {
+    "name": "Sales Invoice-custom_previous_hash",
+    "doctype": "Custom Field",
+    "dt": "Sales Invoice",
+    "fieldname": "custom_previous_hash",
+    "label": "Previous Hash",
+    "fieldtype": "Data",
+    "insert_after": "custom_digital_signature",
+    "read_only": 1,
+    "permlevel": 0
+  }
+]
